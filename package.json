@@ -1,6 +1,6 @@
 {
   "name": "sunset-watch",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A handy library for BDD specification tests to a JS app",
   "main": "sunset-watch.js",
   "scripts": {
@@ -26,20 +26,19 @@
     "url": "https://github.com/MoimHossain/sunset-watch/issues"
   },
   "homepage": "https://github.com/MoimHossain/sunset-watch",
-  "dependencies": {
-    "babel-core": "^6.7.6",
-    "babel-loader": "^6.2.4",
+  "dependencies": {    
     "jquery": "^2.1.4"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.4.5",
+    "core-js": "^2.4.0",
     "babel": "^6.5.2",
-    "webpack": "^1.13.1",
-    "babel-core": "^6.7.6",
+    "babel-core": "^6.9.0",
     "babel-eslint": "^6.0.2",
     "babel-loader": "^6.2.4",
-    "babel-plugin-react-require": "^2.1.0",
-    "babel-preset-es2015": "^6.6.0"
+    "babel-preset-es2015": "^6.9.0",
+    "chai": "^3.5.0",
+    "eslint": "^2.7.0",
+    "mocha": "^2.4.5",
+    "webpack": "^1.13.1"
   }
 }

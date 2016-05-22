@@ -1,6 +1,12 @@
 
 
-export {default as Behaviors} from './src/behaviors';
-export {default as Feature} from './src/feature';
-export {default as StepDefinitions} from './src/step';
-export {default as DOM} from './src/dom/dom';
+var SunsetWatch = {};
+
+
+
+SunsetWatch.Behaviors = require('./behaviors');
+SunsetWatch.Feature = require('./feature');
+SunsetWatch.StepDefinitions = require('./step');
+SunsetWatch.DOM = require('./dom/dom');
+
+module.exports = SunsetWatch;

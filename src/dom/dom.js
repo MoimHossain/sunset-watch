@@ -2,17 +2,9 @@
 import $ from 'jquery';
 import events from './events';
 
+
+
 class DomEl {
-
-	static Selectors = {
-		id: 'ID',
-		'css' : 'CSS'
-	};
-
-	static defaults = {
-		timeout: 2000
-	};
-
 	constructor(selector, selectorType) {
 		this.selector = selector;
 		this.selectorType = selectorType;
@@ -112,11 +104,21 @@ class DomEl {
 	}
 }
 
-export default class DOM {
+DomEl.defaults = {
+	timeout: 2000
+};
 
-	static by = {
-		id(did) {
-			return new DomEl(did, DomEl.Selectors.id);
-		}
-	};
-}
+DomEl.Selectors = {
+	id: 'ID',
+	css : 'CSS'	
+};
+
+class DOM { }
+
+DOM.by = {
+	id(did) {
+		return new DomEl(did, DomEl.Selectors.id);
+	}
+};
+
+export default DOM;

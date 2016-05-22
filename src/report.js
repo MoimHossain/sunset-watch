@@ -1,6 +1,6 @@
 
 class Report {
-	static _reports = [];
+	
 
     static reset() {
     	Report._reports = [];
@@ -10,5 +10,7 @@ class Report {
     	return 'Alles goed';
     }
 }
+
+Report._reports = [];
 
 export default Report;
