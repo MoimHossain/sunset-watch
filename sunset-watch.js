@@ -120,7 +120,6 @@
 		}, {
 			key: 'run',
 			value: function run(onCompleted) {
-				Behaviors._allFeatures = Behaviors._allFeatures || [];
 				_report2.default.reset();
 				_runtime2.default.runListAsync(Behaviors._allFeatures, _runtime2.default.runFeature, function (reports) {
 					onCompleted(reports);
@@ -132,6 +131,9 @@
 	}();
 
 	exports.default = Behaviors;
+
+
+	Behaviors._allFeatures = Behaviors._allFeatures || [];
 
 /***/ },
 /* 2 */

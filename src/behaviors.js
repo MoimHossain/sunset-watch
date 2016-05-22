@@ -8,11 +8,8 @@ export default class Behaviors {
 		//throw message;
 		console.log(message);		
 	}
-
-
-
-	static run(onCompleted) {
-		Behaviors._allFeatures = (Behaviors._allFeatures || []);
+	
+	static run(onCompleted) {		
 		Report.reset();
 		Runtime.runListAsync(
 			Behaviors._allFeatures, 
@@ -22,3 +19,5 @@ export default class Behaviors {
 			});
 	}
 }
+
+Behaviors._allFeatures = (Behaviors._allFeatures || []);
