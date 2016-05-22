@@ -68,12 +68,18 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = {
+	var BDD = {
 		Behaviors: _behaviors2.default,
 		Feature: _feature2.default,
 		StepDefinitions: _step2.default,
 		DOM: _dom2.default
 	};
+
+	if (window && window.document) {
+		window.BDD = BDD;
+	}
+
+	exports.default = BDD;
 
 /***/ },
 /* 1 */
