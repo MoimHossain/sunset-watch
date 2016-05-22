@@ -1,0 +1,36 @@
+{
+  "name": "sunset-watch",
+  "version": "1.0.0",
+  "description": "A handy library for BDD specification tests to a JS app",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },  
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MoimHossain/sunset-watch.git"
+  },
+  "keywords": [
+    "bdd",
+    "test",
+    "js",
+    "jquery",
+    "behaviors",
+    "feature",
+    "specifications",
+    "javascript"
+  ],
+  "author": "Moim Hossain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MoimHossain/sunset-watch/issues"
+  },
+  "homepage": "https://github.com/MoimHossain/sunset-watch",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
