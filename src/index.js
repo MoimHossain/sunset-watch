@@ -1,12 +1,13 @@
 
 
-var SunsetWatch = {};
+import Behaviors from './behaviors';
+import Feature from './feature';
+import StepDefinitions from './step';
+import DOM from './dom/dom';
 
-
-
-SunsetWatch.Behaviors = require('./behaviors');
-SunsetWatch.Feature = require('./feature');
-SunsetWatch.StepDefinitions = require('./step');
-SunsetWatch.DOM = require('./dom/dom');
-
-module.exports = SunsetWatch;
+export default {
+	Behaviors: Behaviors,
+	Feature: Feature,
+	StepDefinitions: StepDefinitions,
+	DOM: DOM
+};

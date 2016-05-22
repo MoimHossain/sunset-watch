@@ -46,14 +46,34 @@
 
 	'use strict';
 
-	var SunsetWatch = {};
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 
-	SunsetWatch.Behaviors = __webpack_require__(1);
-	SunsetWatch.Feature = __webpack_require__(3);
-	SunsetWatch.StepDefinitions = __webpack_require__(11);
-	SunsetWatch.DOM = __webpack_require__(12);
+	var _behaviors = __webpack_require__(1);
 
-	module.exports = SunsetWatch;
+	var _behaviors2 = _interopRequireDefault(_behaviors);
+
+	var _feature = __webpack_require__(3);
+
+	var _feature2 = _interopRequireDefault(_feature);
+
+	var _step = __webpack_require__(11);
+
+	var _step2 = _interopRequireDefault(_step);
+
+	var _dom = __webpack_require__(12);
+
+	var _dom2 = _interopRequireDefault(_dom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+		Behaviors: _behaviors2.default,
+		Feature: _feature2.default,
+		StepDefinitions: _step2.default,
+		DOM: _dom2.default
+	};
 
 /***/ },
 /* 1 */
