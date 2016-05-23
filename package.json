@@ -1,6 +1,6 @@
 {
   "name": "sunset-watch",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "A handy library for BDD specification tests to a JS app",
   "main": "sunset-watch.js",
   "scripts": {

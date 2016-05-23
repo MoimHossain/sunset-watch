@@ -4,7 +4,7 @@ class Report {
 	
 
     showHtml(dom) {
-    	var reports = this._core;
+    	var report = this._core;
 		var htmls = [];
 		var passedStyle = 'style="color: #0000FF;"';
 		var failedStyle = 'style="color: #FF0000;"';

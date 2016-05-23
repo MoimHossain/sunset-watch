@@ -58,11 +58,11 @@
 
 	var _feature2 = _interopRequireDefault(_feature);
 
-	var _step = __webpack_require__(11);
+	var _step = __webpack_require__(12);
 
 	var _step2 = _interopRequireDefault(_step);
 
-	var _dom = __webpack_require__(12);
+	var _dom = __webpack_require__(13);
 
 	var _dom2 = _interopRequireDefault(_dom);
 
@@ -626,7 +626,7 @@
 
 /***/ },
 /* 10 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -635,6 +635,12 @@
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _jquery = __webpack_require__(11);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -646,7 +652,7 @@
 		_createClass(Report, [{
 			key: 'showHtml',
 			value: function showHtml(dom) {
-				var reports = this._core;
+				var report = this._core;
 				var htmls = [];
 				var passedStyle = 'style="color: #0000FF;"';
 				var failedStyle = 'style="color: #FF0000;"';
@@ -667,7 +673,7 @@
 					htmls.push('<p><strong> # Feature: ' + report[x].title + '</strong>' + '<p>' + scenesHtmls.join('') + '</p>' + '</p>');
 				}
 				htmls.push('<p>Total ' + (passedCount + failedCount) + ' step(s) executed, ' + passedCount + ' passed, and ' + failedCount + ' failed.</p>');
-				$(dom || document.body).append('<div style="overflow-y: scroll; width: 600px; height: 90%; position: absolute;top: 20px;left: 20px;border: 1px solid black;padding: 5px;z-index: 999999;background-color: #E0E0F8;">' + htmls.join('') + '</div>');
+				(0, _jquery2.default)(dom || document.body).append('<div style="overflow-y: scroll; width: 600px; height: 90%; position: absolute;top: 20px;left: 20px;border: 1px solid black;padding: 5px;z-index: 999999;background-color: #E0E0F8;">' + htmls.join('') + '</div>');
 			}
 		}, {
 			key: 'costructor',
@@ -683,195 +689,6 @@
 
 /***/ },
 /* 11 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var StepDefinitions = function () {
-	    function StepDefinitions() {
-	        _classCallCheck(this, StepDefinitions);
-	    }
-
-	    _createClass(StepDefinitions, [{
-	        key: "wait",
-	        value: function wait(milsec, callback) {
-	            setTimeout(callback, milsec);
-	        }
-	    }]);
-
-	    return StepDefinitions;
-	}();
-
-	exports.default = StepDefinitions;
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _jquery = __webpack_require__(13);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
-	var _events = __webpack_require__(14);
-
-	var _events2 = _interopRequireDefault(_events);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var DomEl = function () {
-		function DomEl(selector, selectorType) {
-			_classCallCheck(this, DomEl);
-
-			this.selector = selector;
-			this.selectorType = selectorType;
-
-			this.createFluentFuncs();
-		}
-
-		_createClass(DomEl, [{
-			key: 'click',
-			value: function click(next) {
-				var el = this.__getDomEl();
-				if (el) {
-					el.click();
-				}
-				next(el != null);
-			}
-		}, {
-			key: 'sendKeys',
-			value: function sendKeys(keys, next) {
-				var el = this.__getDomEl();
-				if (el) {
-					el.value = ''; // clean existing values
-					(0, _jquery2.default)(el).autotype(keys, { delay: 1 });
-					el.dispatchEvent(new Event('input', { bubbles: true }));
-				}
-				next(el != null);
-			}
-		}, {
-			key: 'createFluentFuncs',
-			value: function createFluentFuncs() {
-				var scope = this;
-				scope.to = {
-					be: {
-						present: function present(onCompleted, timeout) {
-							DomEl.__runTimeBoundTask(function () {
-								return scope.__getDomEl() != null;
-							}, timeout, function (success) {
-								onCompleted(success === true ? scope : null);
-							});
-						}
-					}
-				};
-			}
-		}, {
-			key: '__getDomEl',
-			value: function __getDomEl() {
-				if (this.selectorType = DomEl.Selectors.id) {
-					return document.getElementById(this.selector);
-				} else if (this.selectorType = DomEl.Selectors.css) {
-					// not implemented yet
-				} else {
-						return document.getElementById(this.selector);
-					}
-			}
-		}], [{
-			key: 'keydown',
-			value: function keydown(k) {
-				var oEvent = document.createEvent('KeyboardEvent');
-
-				// Chromium Hack
-				Object.defineProperty(oEvent, 'keyCode', {
-					get: function get() {
-						return this.keyCodeVal;
-					}
-				});
-				Object.defineProperty(oEvent, 'which', {
-					get: function get() {
-						return this.keyCodeVal;
-					}
-				});
-
-				if (oEvent.initKeyboardEvent) {
-					oEvent.initKeyboardEvent("keydown", true, true, document.defaultView, false, false, false, false, k, k);
-				} else {
-					oEvent.initKeyEvent("keydown", true, true, document.defaultView, false, false, false, false, k, 0);
-				}
-
-				oEvent.keyCodeVal = k;
-
-				if (oEvent.keyCode !== k) {
-					alert("keyCode mismatch " + oEvent.keyCode + "(" + oEvent.which + ")");
-				}
-
-				document.dispatchEvent(oEvent);
-			}
-		}, {
-			key: '__runTimeBoundTask',
-			value: function __runTimeBoundTask(runFn, timeout, onCompleted) {
-				var counter = 0,
-				    frequency = 50;
-				timeout = timeout || DomEl.defaults.timeout;
-
-				var timeFunc = setInterval(function () {
-					counter += frequency;
-					if (runFn() === true) {
-						clearInterval(timeFunc);
-						onCompleted(true);
-					} else {
-						if (counter >= timeout) {
-							clearInterval(timeFunc);
-							onCompleted(false);
-						}
-					}
-				}, frequency);
-			}
-		}]);
-
-		return DomEl;
-	}();
-
-	DomEl.defaults = {
-		timeout: 2000
-	};
-
-	DomEl.Selectors = {
-		id: 'ID',
-		css: 'CSS'
-	};
-
-	var DOM = function DOM() {
-		_classCallCheck(this, DOM);
-	};
-
-	DOM.by = {
-		id: function id(did) {
-			return new DomEl(did, DomEl.Selectors.id);
-		}
-	};
-
-	exports.default = DOM;
-
-/***/ },
-/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10691,12 +10508,201 @@
 
 
 /***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var StepDefinitions = function () {
+	    function StepDefinitions() {
+	        _classCallCheck(this, StepDefinitions);
+	    }
+
+	    _createClass(StepDefinitions, [{
+	        key: "wait",
+	        value: function wait(milsec, callback) {
+	            setTimeout(callback, milsec);
+	        }
+	    }]);
+
+	    return StepDefinitions;
+	}();
+
+	exports.default = StepDefinitions;
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _jquery = __webpack_require__(11);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _events = __webpack_require__(14);
+
+	var _events2 = _interopRequireDefault(_events);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var DomEl = function () {
+		function DomEl(selector, selectorType) {
+			_classCallCheck(this, DomEl);
+
+			this.selector = selector;
+			this.selectorType = selectorType;
+
+			this.createFluentFuncs();
+		}
+
+		_createClass(DomEl, [{
+			key: 'click',
+			value: function click(next) {
+				var el = this.__getDomEl();
+				if (el) {
+					el.click();
+				}
+				next(el != null);
+			}
+		}, {
+			key: 'sendKeys',
+			value: function sendKeys(keys, next) {
+				var el = this.__getDomEl();
+				if (el) {
+					el.value = ''; // clean existing values
+					(0, _jquery2.default)(el).autotype(keys, { delay: 1 });
+					el.dispatchEvent(new Event('input', { bubbles: true }));
+				}
+				next(el != null);
+			}
+		}, {
+			key: 'createFluentFuncs',
+			value: function createFluentFuncs() {
+				var scope = this;
+				scope.to = {
+					be: {
+						present: function present(onCompleted, timeout) {
+							DomEl.__runTimeBoundTask(function () {
+								return scope.__getDomEl() != null;
+							}, timeout, function (success) {
+								onCompleted(success === true ? scope : null);
+							});
+						}
+					}
+				};
+			}
+		}, {
+			key: '__getDomEl',
+			value: function __getDomEl() {
+				if (this.selectorType = DomEl.Selectors.id) {
+					return document.getElementById(this.selector);
+				} else if (this.selectorType = DomEl.Selectors.css) {
+					// not implemented yet
+				} else {
+						return document.getElementById(this.selector);
+					}
+			}
+		}], [{
+			key: 'keydown',
+			value: function keydown(k) {
+				var oEvent = document.createEvent('KeyboardEvent');
+
+				// Chromium Hack
+				Object.defineProperty(oEvent, 'keyCode', {
+					get: function get() {
+						return this.keyCodeVal;
+					}
+				});
+				Object.defineProperty(oEvent, 'which', {
+					get: function get() {
+						return this.keyCodeVal;
+					}
+				});
+
+				if (oEvent.initKeyboardEvent) {
+					oEvent.initKeyboardEvent("keydown", true, true, document.defaultView, false, false, false, false, k, k);
+				} else {
+					oEvent.initKeyEvent("keydown", true, true, document.defaultView, false, false, false, false, k, 0);
+				}
+
+				oEvent.keyCodeVal = k;
+
+				if (oEvent.keyCode !== k) {
+					alert("keyCode mismatch " + oEvent.keyCode + "(" + oEvent.which + ")");
+				}
+
+				document.dispatchEvent(oEvent);
+			}
+		}, {
+			key: '__runTimeBoundTask',
+			value: function __runTimeBoundTask(runFn, timeout, onCompleted) {
+				var counter = 0,
+				    frequency = 50;
+				timeout = timeout || DomEl.defaults.timeout;
+
+				var timeFunc = setInterval(function () {
+					counter += frequency;
+					if (runFn() === true) {
+						clearInterval(timeFunc);
+						onCompleted(true);
+					} else {
+						if (counter >= timeout) {
+							clearInterval(timeFunc);
+							onCompleted(false);
+						}
+					}
+				}, frequency);
+			}
+		}]);
+
+		return DomEl;
+	}();
+
+	DomEl.defaults = {
+		timeout: 2000
+	};
+
+	DomEl.Selectors = {
+		id: 'ID',
+		css: 'CSS'
+	};
+
+	var DOM = function DOM() {
+		_classCallCheck(this, DOM);
+	};
+
+	DOM.by = {
+		id: function id(did) {
+			return new DomEl(did, DomEl.Selectors.id);
+		}
+	};
+
+	exports.default = DOM;
+
+/***/ },
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _jquery = __webpack_require__(13);
+	var _jquery = __webpack_require__(11);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
