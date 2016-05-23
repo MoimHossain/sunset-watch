@@ -28,7 +28,7 @@ class Report {
 			.append('<div style="overflow-y: scroll; width: 600px; height: 90%; position: absolute;top: 20px;left: 20px;border: 1px solid black;padding: 5px;z-index: 999999;background-color: #E0E0F8;">' + htmls.join('') + '</div>');    	
     }
 
-    costructor(obj) {
+    constructor(obj) {
     	this._core = obj;
     }
 }
