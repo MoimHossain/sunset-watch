@@ -120,9 +120,9 @@
 		}, {
 			key: 'run',
 			value: function run(onCompleted) {
-				_report2.default.reset();
+
 				_runtime2.default.runListAsync(Behaviors._allFeatures, _runtime2.default.runFeature, function (reports) {
-					onCompleted(reports);
+					onCompleted(new _report2.default(reports));
 				});
 			}
 		}]);
@@ -631,7 +631,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+		value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -639,26 +639,45 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Report = function () {
-	    function Report() {
-	        _classCallCheck(this, Report);
-	    }
+		function Report() {
+			_classCallCheck(this, Report);
+		}
 
-	    _createClass(Report, null, [{
-	        key: 'reset',
-	        value: function reset() {
-	            Report._reports = [];
-	        }
-	    }, {
-	        key: 'report',
-	        value: function report() {
-	            return 'Alles goed';
-	        }
-	    }]);
+		_createClass(Report, [{
+			key: 'showHtml',
+			value: function showHtml(dom) {
+				var reports = this._core;
+				var htmls = [];
+				var passedStyle = 'style="color: #0000FF;"';
+				var failedStyle = 'style="color: #FF0000;"';
+				var passedCount = 0,
+				    failedCount = 0;
+				for (var x = 0; x < report.length; ++x) {
+					var scenesHtmls = [];
+					for (var y = 0; y < report[x].sceneReports.length; ++y) {
+						var stepReportHtmls = [];
+						for (var z = 0; z < report[x].sceneReports[y].stepReports.length; ++z) {
+							var step = report[x].sceneReports[y].stepReports[z];
+							stepReportHtmls.push('<li ' + (step.success === true ? passedStyle : failedStyle) + '>' + (step.success === true ? ' ' : 'X') + step.title + '</li>');
+							step.success === true ? ++passedCount : ++failedCount;
+						}
+						scenesHtmls.push('<p style="padding-left:20px;"> - Scenario: ' + report[x].sceneReports[y].title + '</p>');
+						scenesHtmls.push('<ul>' + stepReportHtmls.join('') + '</ul>');
+					}
+					htmls.push('<p><strong> # Feature: ' + report[x].title + '</strong>' + '<p>' + scenesHtmls.join('') + '</p>' + '</p>');
+				}
+				htmls.push('<p>Total ' + (passedCount + failedCount) + ' step(s) executed, ' + passedCount + ' passed, and ' + failedCount + ' failed.</p>');
+				$(dom || document.body).append('<div style="overflow-y: scroll; width: 600px; height: 90%; position: absolute;top: 20px;left: 20px;border: 1px solid black;padding: 5px;z-index: 999999;background-color: #E0E0F8;">' + htmls.join('') + '</div>');
+			}
+		}, {
+			key: 'costructor',
+			value: function costructor(obj) {
+				this._core = obj;
+			}
+		}]);
 
-	    return Report;
+		return Report;
 	}();
-
-	Report._reports = [];
 
 	exports.default = Report;
 
