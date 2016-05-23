@@ -10,12 +10,12 @@ export default class Behaviors {
 	}
 	
 	static run(onCompleted) {		
-		Report.reset();
+		
 		Runtime.runListAsync(
 			Behaviors._allFeatures, 
 			Runtime.runFeature, 
 			(reports) => {
-				onCompleted(reports);
+				onCompleted(new Report(reports));
 			});
 	}
 }
