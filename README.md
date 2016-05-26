@@ -4,9 +4,6 @@
 
 **Sunset-watch** is an extremely _lightweight_ JavaScript library that allows running **BDD** style tests over web applications.
 
-![Alt text](/Report.png?raw=true "The HTML report")
-
-
 ## Why
 **sunset-watch** allows you to run **BDD** specifications on your 
 web application but unlike **Selenium**, it runs into the _same_ browser session 
@@ -32,15 +29,16 @@ The idea in a nutshell is like following:
 
 ```javascript
 import $ from 'jquery';
-import {} from 'sunset-watch';
+import {BDD} from 'sunset-watch';
 
-var Behaviors = BDD.Behaviors;
-
+// We are running the test once the page has been loaded successfully
+// Using jQuery ready for that.
 $(document).ready(function() {
     
+    // Including a feature into the BDD runtime
 	require('./features/product.feature');
 
-	Behaviors.run((report) => {
+	BDD.Behaviors.run((report) => {
         report.showHtml();
 	});
 });
@@ -52,9 +50,9 @@ Include the test file in the _index.html_ (or any other page) that boots your we
 In the test file above we saw a product.feature reference, we will write that now in a **product.feature.js** file.
 
 ```javascript
-import steps from './stepDefinitions/product.stepDefinitions';
-import {} from 'sunset-watch';
 
+import {BDD} from 'sunset-watch';
+import steps from './stepDefinitions/product.stepDefinitions';
 
 var Feature = BDD.Feature;
 
@@ -64,14 +62,16 @@ Feature('Product', steps)
 		.When('I enter the word - "addidas"')			
 		.Then('I see products matched they query');
 ```
+
 Now, we will write another file that will glue this **feature** with the 
 actual application. This file is known as step definitions file.
 The idea of the _step definition_ is pretty much the same as other 
 popular BDD JS frameworks (i.e. **Cucumber**). This is where you locate **DOM** elements,
 raise events on them and do the relevant **asserts**. 
 
+
 ```javascript
-import {} from 'sunset-watch';
+import {BDD} from 'sunset-watch';
 
 var StepDefinitions = BDD.StepDefinitions;
 var Dom = BDD.DOM;
@@ -118,7 +118,11 @@ export default new ProductStepDefinitions();
 
 Now load the application in the browser and see it will play all the steps.
 
+## Reports
+
 After it finishes all the steps, the report will be visible on the browser html.
+
+![Alt text](/Report.png?raw=true "The HTML report")
 
 ## Conclusion:
 This library is very lightweight and feature wise limited 
