@@ -79,7 +79,7 @@
 		window.BDD = BDD;
 	}
 
-	exports.default = BDD;
+	exports.default = "MOIMHOSSAIN";
 
 /***/ },
 /* 1 */
