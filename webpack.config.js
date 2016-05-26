@@ -2,12 +2,10 @@ var path = require('path'),
     webpack = require('webpack');
 
 var config = {
-    //devtool: 'source-map',
     entry: path.join(__dirname, 'src/index.js'),
 
     output: {
-        filename: 'sunset-watch.js',
-        //path: path.resolve(__dirname, 'public'),
+        filename: 'sunset-watch-core.js',
         devtoolModuleFilenameTemplate: function (info) {
             var resourcePath = info.absoluteResourcePath;
             if (resourcePath.indexOf(__dirname) !== 0) {

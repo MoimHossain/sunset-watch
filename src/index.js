@@ -16,4 +16,4 @@ if(window && window.document) {
 	window.BDD = BDD;
 }
 
-export default "MOIMSUNSET";
+export default BDD;

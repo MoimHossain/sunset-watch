@@ -1,11 +1,11 @@
 {
   "name": "sunset-watch",
-  "version": "1.0.16",
+  "version": "1.0.18",
   "description": "A handy library for BDD specification tests to a JS app",
   "main": "sunset-watch.js",
   "scripts": {
     "test": "mocha --reporter spec",
-    "build": "node_modules/.bin/webpack"
+    "start": "node_modules/.bin/webpack"
   },  
   "repository": {
     "type": "git",
