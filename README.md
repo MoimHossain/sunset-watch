@@ -4,6 +4,8 @@
 
 **Sunset-watch** is an extremely _lightweight_ JavaScript library that allows running **BDD** style tests over web applications.
 
+![Alt text](/Report.png?raw=true "The HTML report")
+
 
 ## Why
 **sunset-watch** allows you to run **BDD** specifications on your 
@@ -38,8 +40,8 @@ $(document).ready(function() {
     
 	require('./features/product.feature');
 
-	Behaviors.run((report) => {		
-		console.log(report)
+	Behaviors.run((report) => {
+        report.showHtml();
 	});
 });
 
@@ -115,6 +117,8 @@ export default new ProductStepDefinitions();
 ```
 
 Now load the application in the browser and see it will play all the steps.
+
+After it finishes all the steps, the report will be visible on the browser html.
 
 ## Conclusion:
 This library is very lightweight and feature wise limited 
